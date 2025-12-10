@@ -519,6 +519,48 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Create share URL and text for social sharing
+    const shareUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent(`Check out ${name} at Mergington High School! ${details.description}`);
+    const shareTitle = encodeURIComponent(name);
+
+    // Create social sharing buttons
+    const shareButtons = `
+      <div class="share-buttons">
+        <span class="share-label">Share:</span>
+        <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="share-button twitter-share tooltip"
+           aria-label="Share on Twitter">
+          <span class="share-icon">🐦</span>
+          <span class="tooltip-text">Share on Twitter</span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="share-button facebook-share tooltip"
+           aria-label="Share on Facebook">
+          <span class="share-icon">📘</span>
+          <span class="tooltip-text">Share on Facebook</span>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="share-button whatsapp-share tooltip"
+           aria-label="Share on WhatsApp">
+          <span class="share-icon">💬</span>
+          <span class="tooltip-text">Share on WhatsApp</span>
+        </a>
+        <a href="mailto:?subject=${shareTitle}&body=${shareText}%20${shareUrl}" 
+           class="share-button email-share tooltip"
+           aria-label="Share via Email">
+          <span class="share-icon">✉️</span>
+          <span class="tooltip-text">Share via Email</span>
+        </a>
+      </div>
+    `;
+
     activityCard.innerHTML = `
       ${tagHtml}
       <h4>${name}</h4>
@@ -528,6 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
       </p>
       ${capacityIndicator}
+      ${shareButtons}
       <div class="participants-list">
         <h5>Current Participants:</h5>
         <ul>
